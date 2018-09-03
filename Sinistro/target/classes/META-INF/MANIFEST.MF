@@ -1,0 +1,10 @@
+Manifest-Version: 1.0
+Implementation-Title: Sinistro
+Implementation-Version: 0.0.1-SNAPSHOT
+Built-By: Danilo_Oliveira
+Implementation-Vendor-Id: br.com.caixaseguradora
+Build-Jdk: 1.8.0_181
+Implementation-URL: https://projects.spring.io/spring-boot/#/spring-bo
+ ot-starter-parent/Sinistro
+Created-By: Maven Integration for Eclipse
+

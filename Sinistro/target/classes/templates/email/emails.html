@@ -1,0 +1,108 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>E-mails by Date</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<link rel="stylesheet" type="text/css"
+	href="webjars/bootstrap/3.3.7/css/bootstrap.min.css" />
+
+<link rel="stylesheet" th:href="@{/css/main.css}"
+	href="../../css/main.css" />
+
+</head>
+<body>
+
+	<nav class="navbar navbar-inverse">
+		<div class="container">
+			<div class="navbar-header">
+				<a class="navbar-brand" href="#">Spring Boot</a>
+			</div>
+			<div id="navbar" class="collapse navbar-collapse">
+				<ul class="nav navbar-nav">
+					<li class="active"><a href="#">Home</a></li>
+					<li><a href="#about">About</a></li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+
+	<div class="container">
+
+		<div class="starter-template">
+			<div class="panel panel-default">
+				<div class="panel-heading" align="center">
+
+					<strong>Batimento de relatório de risco</strong>
+				</div>
+				<div class="panel-body">
+
+					<nav class="navbar navbar-light bg-light">
+
+
+						<!-- 					<br></br> -->
+						<form th:action="@{/emailByDate}" class="form-inline" method="get">
+							
+							<input aria-label="Search" placeholder="00" type="date" th:name="initialDate" /> 
+							<input aria-label="Search" placeholder="00" type="date" th:name="finalDate" />
+							
+							 <a class="btn btn-sm btn-success"
+								href="/emailByDate" th:href="@{/emailByDate}">Pesq</a> <input
+								class="btn btn-sm btn-success" type="submit" value="Pesquisar"
+								th:href="@{/emailByDate}">
+
+							<button class="btn btn-default">
+								<i class="glyphicon glyphicon-search"></i>
+							</button>
+						</form>
+
+					</nav>
+				</div>
+
+				<div class="panel-body">
+					<div class="table-responsive">
+						<table
+							class="table table-sm table-striped table-hover table-bordered">
+							<thead>
+								<tr>
+
+									<th>Nome</th>
+									<th>Certificado</th>
+									<th>Numero de Solicitação</th>
+									<th>Tipo de Contribuição</th>
+									<th>Valor da Contribuição</th>
+									<th>Data da solicitação</th>
+
+								</tr>
+							</thead>
+							<tbody>
+								<tr th:each="email :${emails}">
+									<td th:text="${email.nome}"></td>
+									<td th:text="${email.certificado}"></td>
+									<td th:text="${email.cpf}"></td>
+									<td th:text="|${email.tipo}|"></td>
+									<td th:text="|${{email.valorContribuicao}}|">R$ 0.00,00</td>
+<!-- 									<td th:inline="text">[[${email.valorContribuicao}]]</td> -->
+									<td th:text="${#dates.format(email.data, 'dd/MM/yyyy')}"></td>
+
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+				<div class="panel-footer">
+					<a class="btn btn-sm btn-success" th:href="@{/anteriorPage/}">Anterior</a>
+					<a class="btn btn-sm btn-success" th:href="@{/proximaPage/}">Proxima</a>
+				</div>
+
+			</div>
+		</div>
+
+	</div>
+	<!-- /.container -->
+
+	<script type="text/javascript"
+		src="webjars/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+</body>
+</html>
